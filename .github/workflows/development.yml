@@ -523,3 +523,16 @@ jobs:
         uses: golangci/golangci-lint-action@v3
         with:
           version: latest
+  govanish:
+    name: govanish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+      - uses: actions/checkout@v4
+      - name: Run golangci-lint
+        run: |
+          go install github.com/sivukhin/govanish@e5710286861eb3beb8115bf0173abc1fa38b9600
+          govanish -format github
